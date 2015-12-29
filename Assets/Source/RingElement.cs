@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+﻿
 using UnityEngine;
 
 namespace Assets.Source
@@ -66,16 +66,9 @@ namespace Assets.Source
 
         private void SetArc(ParticleSystem p, float value)
         {
-            SerializedObject so = new SerializedObject(p);
-            so.FindProperty("ShapeModule.arc").floatValue = value;
-            so.ApplyModifiedProperties();
+            var shape = p.shape;
+            shape.arc = value;
         }
 
-        private void SetEmissionRate(ParticleSystem p, float value)
-        {
-            SerializedObject so = new SerializedObject(p);
-            so.FindProperty("ShapeModule.arc").floatValue = value;
-            so.ApplyModifiedProperties();
-        }
     }
 }

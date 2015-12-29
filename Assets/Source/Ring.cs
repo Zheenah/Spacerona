@@ -2,7 +2,7 @@
 
 namespace Assets.Source
 {
-    public class NewBehaviourScript : MonoBehaviour
+    public class Ring : MonoBehaviour
     {
 
         public float A;
