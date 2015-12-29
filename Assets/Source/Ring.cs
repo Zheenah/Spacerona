@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class NewBehaviourScript : MonoBehaviour
+namespace Assets.Source
 {
+    public class NewBehaviourScript : MonoBehaviour
+    {
 
-    public float A;
-    public float B;
+        public float A;
+        public float B;
 
-	// Use this for initialization
-	void Start () {
+        // Use this for initialization
+        void Start () {
 	
-	}
+        }
 	
-	// Update is called once per frame
-	void Update () {
+        // Update is called once per frame
+        void Update () {
 	
-	}
+        }
+    }
 }
