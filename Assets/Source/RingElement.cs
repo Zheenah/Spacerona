@@ -9,6 +9,7 @@ namespace Assets.Source
 
         public float StartRadius = 2.74f;
         public float StartArc = 45f;
+        public Color StartColor = new Color(0,97,255);
         ///
         /// 
         /// 
@@ -38,7 +39,7 @@ namespace Assets.Source
         private float radius;
         public float Radius
         {
-            get { return arc; }
+            get { return radius; }
             set
             {
                 arc = value;
@@ -49,6 +50,22 @@ namespace Assets.Source
                 }
             }
         }
+
+
+        private Color color;
+        public Color Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+                for (int i = 0; i < ArcParticles.Length-1; i++)
+                {
+                    ArcParticles[i].startColor = new Color(value.r, value.g, value.b, 146f);
+                }
+            }
+        }
+
 
         // Use this for initialization
         void Awake ()
@@ -67,6 +84,7 @@ namespace Assets.Source
 
             Arc = StartArc;
             Radius = StartRadius;
+            Color = StartColor;
         }
 	
         // Update is called once per frame
