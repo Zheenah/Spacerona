@@ -5,7 +5,7 @@ using Assets.Source;
 public class GameController : MonoBehaviour
 {
 
-    public Ring Ring;
+    public GameObject RingToRotate;
     public RingElement RingElement;
     public float RingTurnVelocity = 1f;
 
@@ -29,13 +29,13 @@ public class GameController : MonoBehaviour
     private void InputEventSystem_RightTap(object sender, System.EventArgs e)
     {
         
-        Ring.transform.Rotate(new Vector3(0,0,-RingTurnVelocity * Time.deltaTime));
+        RingToRotate.transform.Rotate(new Vector3(0,0,-RingTurnVelocity * Time.deltaTime));
         RingElement.Arc += 60f*Time.deltaTime;
     }
 
     private void InputEventSystem_LeftTap(object sender, System.EventArgs e)
     {
-        Ring.transform.Rotate(new Vector3(0, 0, RingTurnVelocity * Time.deltaTime));
+        RingToRotate.transform.Rotate(new Vector3(0, 0, RingTurnVelocity * Time.deltaTime));
         RingElement.Arc -= 60f * Time.deltaTime;
     }
 
