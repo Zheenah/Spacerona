@@ -87,7 +87,8 @@ public class EllipseRing : MonoBehaviour
         UpdatePosition(newElement, angle);
        UpdateArcAndRadius(newElement, angle);
         UpdateRotation(newElement, angle);
-
+        
+        newElement.UpdateCollider();
 
 
         return newElement;
@@ -112,17 +113,46 @@ public class EllipseRing : MonoBehaviour
 
         float newArcSize = ((360f * arcLength)) / (2f * Mathf.PI);
         float radius = ((radiusDistance) + element.Radius + 0.5f);
-        newArcSize = newArcSize/radius;
+        radius = ((element.Radius / 2) );
+
+        newArcSize = newArcSize/(radius);
+
         //newArcSize *= radiusDistance/(RadiusA*RadiusB);
 
         //newArcSize = newArcSize*(radiusDistance/RadiusB);
-        newArcSize = newArcSize*(1 + ((radiusDistance - RadiusB)/RadiusA));
-        element.Arc = newArcSize  ;
+        
+        //newArcSize = newArcSize*(1 + ((radiusDistance - RadiusB)/RadiusA));
+        element.Arc = newArcSize ;
 
         //element.Arc = (newArcSize/radiusDistance)*3.5f;
 
 
     }
+
+    private void UpdateArcAndRadiusDifferentSizes(RingElement element, float angleInDegree)
+    {
+        float radiusDistance = Vector3.Distance(element.transform.position, new Vector3());
+        //element.Radius = radiusDistance;
+
+        float newArcSize = ((360f * arcLength)) / (2f * Mathf.PI);
+        float radius = ((radiusDistance) + element.Radius + 0.5f);
+        //radius = ((element.Radius / 2) );
+
+        newArcSize = newArcSize/(radius);
+
+        //newArcSize *= radiusDistance/(RadiusA*RadiusB);
+
+        //newArcSize = newArcSize*(radiusDistance/RadiusB);
+        
+        newArcSize = newArcSize*(1 + ((radiusDistance - RadiusB)/RadiusA));
+        element.Arc = newArcSize ;
+
+        //element.Arc = (newArcSize/radiusDistance)*3.5f;
+
+
+    }
+
+
 
     private void UpdatePosition(RingElement element, float angleInDegree)
     {

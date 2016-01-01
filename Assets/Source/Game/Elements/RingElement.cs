@@ -49,10 +49,17 @@ namespace Assets.Source
                 return;
 
             Vector2 newSize = boxCollider.size;
-            Debug.Log("oldsize: " + newSize);
-
+            
             newSize.y = (2*5*Mathf.PI)*angleInDegree/360f;
             boxCollider.size = newSize;
+            float y = Mathf.Sin(Mathf.Deg2Rad*Arc*0.5f)*(Radius-0.5f);
+            float x = Mathf.Cos(Mathf.Deg2Rad * Arc * 0.5f) * (Radius-0.5f);
+
+            Vector3 newPos = new Vector3(x, y);
+            Debug.Log("oldPos: " + boxCollider.transform.localPosition);
+            boxCollider.transform.localPosition = newPos;
+            Debug.Log("newPos: " + boxCollider.transform.localPosition);
+            //boxCollider.transform.localRotation = Quaternion.Euler(0,0,transform.localEulerAngles.z);
         }
 
         private float radius;
@@ -61,7 +68,7 @@ namespace Assets.Source
             get { return radius; }
             set
             {
-                arc = value;
+                radius = value;
                 for (int i = 0; i < ArcParticles.Length; i++)
                 {
                     //ArcParticles[i].Clear();
@@ -86,6 +93,22 @@ namespace Assets.Source
             }
         }
 
+        public float ColliderSize
+        {
+            get
+            {
+                return boxCollider.size.y;
+            }
+            set
+            {
+                SetCollider(Arc);
+            }
+        }
+
+        public void UpdateCollider()
+        {
+            SetCollider(Arc);
+        }
 
         // Use this for initialization
         void Awake ()
@@ -104,7 +127,9 @@ namespace Assets.Source
 
             Arc = StartArc;
             Radius = StartRadius;
+            Debug.Log("Radius: " + Radius);
             Color = StartColor;
+
 
             
         }
