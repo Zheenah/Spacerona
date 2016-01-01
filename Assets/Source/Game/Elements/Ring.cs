@@ -46,7 +46,6 @@ namespace Assets.Source
                 newElement.Arc = arc;
                 newElement.Radius = A;
                 int randColor = Random.Range(0, Colors.Length);
-
                 newElement.Color = Colors[randColor];
                 
                     

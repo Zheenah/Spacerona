@@ -30,7 +30,13 @@ namespace Assets.Source
                 arc = value;
                 for (int i = 0; i < ArcParticles.Length; i++)
                 {
+                    ArcParticles[i].Clear();
+                    
+
                     ArcParticles[i].emissionRate = (defaultEmissions[i]/ defaultRadMeasure) *value * ArcParticles[i].shape.radius;
+                    ArcParticles[i].Simulate(4f);
+                    ArcParticles[i].Play();
+
                     SetArc(ArcParticles[i], value);
                 }
             }
@@ -45,6 +51,7 @@ namespace Assets.Source
                 arc = value;
                 for (int i = 0; i < ArcParticles.Length; i++)
                 {
+                    //ArcParticles[i].Clear();
                     ArcParticles[i].emissionRate = (defaultEmissions[i] / defaultRadMeasure) * value * ArcParticles[i].shape.arc;
                     SetRadius(ArcParticles[i], value);
                 }
@@ -85,6 +92,8 @@ namespace Assets.Source
             Arc = StartArc;
             Radius = StartRadius;
             Color = StartColor;
+
+            
         }
 	
         // Update is called once per frame

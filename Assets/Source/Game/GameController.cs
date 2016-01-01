@@ -5,9 +5,13 @@ using Assets.Source;
 public class GameController : MonoBehaviour
 {
 
-    public GameObject RingToRotate;
+    public GameObject ObjectToRotate;
+    public EllipseRing EllipseRing;
     public RingElement RingElement;
     public float RingTurnVelocity = 1f;
+
+    public float ellipseRotation = 0f;
+    public float EllipseRotationSpeed = 1f;
 
 	// Use this for initialization
 	void Start ()
@@ -28,14 +32,20 @@ public class GameController : MonoBehaviour
 
     private void InputEventSystem_RightTap(object sender, System.EventArgs e)
     {
-        
-        RingToRotate.transform.Rotate(new Vector3(0,0,-RingTurnVelocity * Time.deltaTime));
+        if(ObjectToRotate != null)
+            ObjectToRotate.transform.Rotate(new Vector3(0,0,-RingTurnVelocity * Time.deltaTime));
+        ellipseRotation -= EllipseRotationSpeed*Time.deltaTime;
+        EllipseRing.Rotate(ellipseRotation);
         RingElement.Arc += 60f*Time.deltaTime;
+
     }
 
     private void InputEventSystem_LeftTap(object sender, System.EventArgs e)
     {
-        RingToRotate.transform.Rotate(new Vector3(0, 0, RingTurnVelocity * Time.deltaTime));
+        if (ObjectToRotate != null)
+            ObjectToRotate.transform.Rotate(new Vector3(0, 0, RingTurnVelocity * Time.deltaTime));
+        ellipseRotation += EllipseRotationSpeed * Time.deltaTime;
+        EllipseRing.Rotate(ellipseRotation);
         RingElement.Arc -= 60f * Time.deltaTime;
     }
 
