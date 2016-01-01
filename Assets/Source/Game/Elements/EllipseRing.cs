@@ -26,7 +26,9 @@ public class EllipseRing : MonoBehaviour
 
     public void Rotate(float angleInRad)
     {
+
         float toAdd = 2 * Mathf.PI / ElementsCount;
+        float currentRadian = 0;
         foreach (var obj in elementsOnRing)
         {
             //Vector2 newPos = new Vector2(RadiusA * Mathf.Cos(angleInRad), RadiusB * Mathf.Sin(angleInRad));
@@ -35,7 +37,10 @@ public class EllipseRing : MonoBehaviour
 
             //obj.transform.localRotation = Quaternion.Euler(new Vector3(0f,0f,newAngle));
             //obj.transform.Rotate(new Vector3(0f, 0f, newAngle));
-            UpdateRingElement(obj, angleInRad * Mathf.Rad2Deg);
+            float currentDegree = obj.transform.localEulerAngles.z + 22.5f;
+            float speedModifier = Mathf.Sin(currentDegree*Mathf.Deg2Rad);
+
+            UpdateRingElement(obj, (angleInRad *speedModifier) * Mathf.Rad2Deg);
 
             angleInRad += toAdd;
         }
@@ -100,7 +105,7 @@ public class EllipseRing : MonoBehaviour
     private void UpdateRingElement( RingElement element, float angleInDegree)
     {
         UpdatePosition(element, angleInDegree);
-        UpdateArcAndRadius(element, angleInDegree);
+        // UpdateArcAndRadius(element, angleInDegree);
         UpdateRotation(element,angleInDegree ); 
               
        
@@ -113,7 +118,7 @@ public class EllipseRing : MonoBehaviour
 
         float newArcSize = ((360f * arcLength)) / (2f * Mathf.PI);
         float radius = ((radiusDistance) + element.Radius + 0.5f);
-        radius = ((element.Radius / 2) );
+        radius = ((element.Radius / 1.5f) );
 
         newArcSize = newArcSize/(radius);
 

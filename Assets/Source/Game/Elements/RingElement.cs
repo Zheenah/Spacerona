@@ -58,6 +58,9 @@ namespace Assets.Source
             Vector3 newPos = new Vector3(x, y);
             Debug.Log("oldPos: " + boxCollider.transform.localPosition);
             boxCollider.transform.localPosition = newPos;
+            boxCollider.transform.localEulerAngles = new Vector3(0f,0f,Arc/2f);
+
+
             Debug.Log("newPos: " + boxCollider.transform.localPosition);
             //boxCollider.transform.localRotation = Quaternion.Euler(0,0,transform.localEulerAngles.z);
         }
