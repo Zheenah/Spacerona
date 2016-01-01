@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 
     public GameObject ObjectToRotate;
     public EllipseRing EllipseRing;
-    public RingElement RingElement;
+    //public RingElement RingElement;
     public float RingTurnVelocity = 1f;
 
     public float ellipseRotation = 0f;
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
             ObjectToRotate.transform.Rotate(new Vector3(0,0,-RingTurnVelocity * Time.deltaTime));
         ellipseRotation -= EllipseRotationSpeed*Time.deltaTime;
         EllipseRing.Rotate(ellipseRotation);
-        RingElement.Arc += 60f*Time.deltaTime;
+        //RingElement.Arc += 60f*Time.deltaTime;
 
     }
 
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
             ObjectToRotate.transform.Rotate(new Vector3(0, 0, RingTurnVelocity * Time.deltaTime));
         ellipseRotation += EllipseRotationSpeed * Time.deltaTime;
         EllipseRing.Rotate(ellipseRotation);
-        RingElement.Arc -= 60f * Time.deltaTime;
+        //RingElement.Arc -= 60f * Time.deltaTime;
     }
 
     // Update is called once per frame

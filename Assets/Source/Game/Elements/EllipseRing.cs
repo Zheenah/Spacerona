@@ -18,6 +18,8 @@ public class EllipseRing : MonoBehaviour
     private float arcSize;
     private float radiusSize;
     private float arcLength;
+    private float ringElementRadius;
+    
 	// Use this for initialization
 
 
@@ -49,6 +51,12 @@ public class EllipseRing : MonoBehaviour
 	{
 	    CalculateParameters();
 	    CreateEllipseRing();
+	    CapsuleCollider coll = GetComponent<CapsuleCollider>();
+	    ringElementRadius = ElementPrefab.StartRadius;
+
+        Debug.Log(ringElementRadius);
+	    coll.radius = RadiusB + ringElementRadius;
+	    coll.height = 2 * (RadiusA + ringElementRadius);
 	}
 
     private void CreateEllipseRing()
@@ -77,8 +85,7 @@ public class EllipseRing : MonoBehaviour
 
         //UpdateRingElement(newElement, angle);
         UpdatePosition(newElement, angle);
-        UpdateRotation(newElement, angle);
-        UpdateArcAndRadius(newElement, angle);
+       UpdateArcAndRadius(newElement, angle);
         UpdateRotation(newElement, angle);
 
 
@@ -104,10 +111,13 @@ public class EllipseRing : MonoBehaviour
         //element.Radius = radiusDistance;
 
         float newArcSize = ((360f * arcLength)) / (2f * Mathf.PI);
-        newArcSize = newArcSize / (radiusDistance + element.Radius );
+        float radius = ((radiusDistance) + element.Radius + 0.5f);
+        newArcSize = newArcSize/radius;
+        //newArcSize *= radiusDistance/(RadiusA*RadiusB);
 
-        //element.Arc = newArcSize * (RadiusB/RadiusA) * radiusDistance;
-        element.Arc = newArcSize  * radiusDistance;
+        //newArcSize = newArcSize*(radiusDistance/RadiusB);
+        newArcSize = newArcSize*(1 + ((radiusDistance - RadiusB)/RadiusA));
+        element.Arc = newArcSize  ;
 
         //element.Arc = (newArcSize/radiusDistance)*3.5f;
 

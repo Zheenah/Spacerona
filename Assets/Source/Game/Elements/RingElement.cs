@@ -20,7 +20,7 @@ namespace Assets.Source
         private float defaultArc;
         private float defaultRadMeasure;
         private ParticleSystem.MinMaxCurve defaultEmission;
-
+        public BoxCollider2D boxCollider;
         private float arc;
         public float Arc
         {
@@ -36,10 +36,23 @@ namespace Assets.Source
                     ArcParticles[i].emissionRate = (defaultEmissions[i]/ defaultRadMeasure) *value * ArcParticles[i].shape.radius;
                     ArcParticles[i].Simulate(4f);
                     ArcParticles[i].Play();
-
+                    //SetCollider(value);
                     SetArc(ArcParticles[i], value);
                 }
             }
+        }
+
+
+        private void SetCollider(float angleInDegree)
+        {
+            if (boxCollider == null)
+                return;
+
+            Vector2 newSize = boxCollider.size;
+            Debug.Log("oldsize: " + newSize);
+
+            newSize.y = (2*5*Mathf.PI)*angleInDegree/360f;
+            boxCollider.size = newSize;
         }
 
         private float radius;
