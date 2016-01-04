@@ -56,12 +56,11 @@ namespace Assets.Source
             float x = Mathf.Cos(Mathf.Deg2Rad * Arc * 0.5f) * (Radius-0.5f);
 
             Vector3 newPos = new Vector3(x, y);
-            Debug.Log("oldPos: " + boxCollider.transform.localPosition);
             boxCollider.transform.localPosition = newPos;
             boxCollider.transform.localEulerAngles = new Vector3(0f,0f,Arc/2f);
 
 
-            Debug.Log("newPos: " + boxCollider.transform.localPosition);
+           // Debug.Log("newPos: " + boxCollider.transform.localPosition);
             //boxCollider.transform.localRotation = Quaternion.Euler(0,0,transform.localEulerAngles.z);
         }
 
@@ -130,7 +129,7 @@ namespace Assets.Source
 
             Arc = StartArc;
             Radius = StartRadius;
-            Debug.Log("Radius: " + Radius);
+            //Debug.Log("Radius: " + Radius);
             Color = StartColor;
 
 
@@ -160,6 +159,12 @@ namespace Assets.Source
             var shape = p.shape;
             shape.radius = radius;
         }
+        private void ConvertToValidRange(ref float angle)
+        {
+            angle = angle % 360f;
 
+            if (angle < 0f)
+                angle = 360f + angle;
+        }
     }
 }

@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
 
     public GameObject ObjectToRotate;
-    public EllipseRing EllipseRing;
+    public EllipseRing EllipseRing, EllipseRing2;
     //public RingElement RingElement;
     public float RingTurnVelocity = 1f;
 
@@ -35,7 +35,8 @@ public class GameController : MonoBehaviour
         if(ObjectToRotate != null)
             ObjectToRotate.transform.Rotate(new Vector3(0,0,-RingTurnVelocity * Time.deltaTime));
         ellipseRotation -= EllipseRotationSpeed*Time.deltaTime;
-        EllipseRing.Rotate(ellipseRotation);
+        EllipseRing.Rotate(-EllipseRotationSpeed * Time.deltaTime);
+        EllipseRing2.Rotate(-EllipseRotationSpeed * Time.deltaTime);
         //RingElement.Arc += 60f*Time.deltaTime;
 
     }
@@ -45,7 +46,8 @@ public class GameController : MonoBehaviour
         if (ObjectToRotate != null)
             ObjectToRotate.transform.Rotate(new Vector3(0, 0, RingTurnVelocity * Time.deltaTime));
         ellipseRotation += EllipseRotationSpeed * Time.deltaTime;
-        EllipseRing.Rotate(ellipseRotation);
+        EllipseRing.Rotate(EllipseRotationSpeed * Time.deltaTime);
+        EllipseRing2.Rotate(EllipseRotationSpeed * Time.deltaTime);
         //RingElement.Arc -= 60f * Time.deltaTime;
     }
 
